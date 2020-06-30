@@ -5,6 +5,7 @@ import AvatarAndProgress from './AvatarAndProgress';
 import UserFields from './UserFields';
 import EditUserPage from '../EditUserPage/EditUserPage';
 import EditEvent from './EditEvent/EditEvent';
+import Assignments from './Assignments/Assignments';
 
 export default function ({
   match: {
@@ -19,9 +20,13 @@ export default function ({
           <AvatarAndProgress />
           <UserFields />
         </div>
-      ) : specify === 'editEvent' ?(
+      ) : specify === 'edit-event' ?(
         <div className={styles.content}>
           <EditEvent />
+        </div>
+      ) : specify === 'assignments' ?(
+        <div className={styles.content}>
+          <Assignments />
         </div>
       ) : (
             <div className={styles.content}>
