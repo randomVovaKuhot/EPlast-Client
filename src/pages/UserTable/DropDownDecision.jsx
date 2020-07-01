@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import { Menu } from 'antd';
-import {
-  FilePdfOutlined,
-  DeleteOutlined,
-  EditOutlined,
-} from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import classes from './Table.module.css';
-import EditDecisionModal from './EditDecisionModal';
-import deleteConfirm from './DeleteConfirm';
+import EditUserModal from './EditUserModal';
+import deleteConfirm from './DeleteUserRecord';
 
 const DropDown = (props) => {
   // eslint-disable-next-line react/prop-types
@@ -20,8 +16,6 @@ const DropDown = (props) => {
         setShowEditModal(true);
         break;
       case '2':
-        break;
-      case '3':
         deleteConfirm();
         break;
       default:
@@ -46,15 +40,11 @@ const DropDown = (props) => {
           Редагувати
         </Menu.Item>
         <Menu.Item key="2">
-          <FilePdfOutlined />
-          Конвертувати в PDF
-        </Menu.Item>
-        <Menu.Item key="3">
           <DeleteOutlined />
           Видалити
         </Menu.Item>
       </Menu>
-      <EditDecisionModal
+      <EditUserModal
         record={record}
         showModal={showEditModal}
         setShowModal={setShowEditModal}
