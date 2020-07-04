@@ -6,7 +6,6 @@ import Gallery from './Gallery';
 
 const classes = require('./EventInfo.module.css');
 
-
 const baseColumns = [
     {
         title: "Користувач",
@@ -29,7 +28,7 @@ const baseColumns = [
 const EventInfo = () => {
 
     const [filterTable, setFilterTable] = useState([{}]);
-    const [baseData, ] = useState(rawData);
+    const [baseData,] = useState(rawData);
 
     const search = (value: any) => {
         const filteredTable = baseData.filter((item: any) =>
@@ -50,14 +49,15 @@ const EventInfo = () => {
                     <SortedEventInfo />
                 </div>
                 <Gallery />
+                
                 <div>
                     <Row>
-                            <Input.Search
-                                style={{ width: "400px", margin: "0 0 10px 0" }}
-                                placeholder="Search by..."
-                                enterButton
-                                onSearch={search}
-                            />   
+                        <Input.Search
+                            style={{ width: "400px", margin: "0 0 10px 0" }}
+                            placeholder="Search by..."
+                            enterButton
+                            onSearch={search}
+                        />
                     </Row>
                     <Table
                         rowKey="uid"

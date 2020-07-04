@@ -14,7 +14,7 @@ export default function ({
 }: any) {
   return (
     <div className={styles.mainContainer}>
-      <Menu />
+      <Menu url={specify}/>
       {specify === 'main' ? (
         <div className={styles.content}>
           <AvatarAndProgress />
