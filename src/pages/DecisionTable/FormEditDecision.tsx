@@ -1,9 +1,14 @@
 import React from 'react';
 import { Form, Input } from 'antd';
 
-// eslint-disable-next-line react/prop-types
-const FormEditDecision = ({ record }) => {
-  // eslint-disable-next-line react/prop-types
+interface Props {
+  record: {
+    completed: boolean;
+    title: string;
+  };
+}
+
+const FormEditDecision = ({ record }: Props) => {
   const { completed, title } = record;
 
   console.log(title);

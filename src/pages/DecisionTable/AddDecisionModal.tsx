@@ -2,8 +2,12 @@ import React from 'react';
 import { Modal, Button } from 'antd';
 import FormAddDecision from './FormAddDecision';
 
-// eslint-disable-next-line react/prop-types
-const AddDecisionModal = ({ visibleModal, setVisibleModal }) => {
+interface Props {
+  visibleModal: boolean;
+  setVisibleModal: (visibleModal: boolean) => void;
+}
+
+const AddDecisionModal = ({ visibleModal, setVisibleModal }: Props) => {
   const handleOk = () => {};
 
   const handleCancel = () => setVisibleModal(false);

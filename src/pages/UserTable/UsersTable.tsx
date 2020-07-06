@@ -10,7 +10,7 @@ const { Content } = Layout;
 const UsersTable = () => {
   const [loading, setLoading] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
-  const [recordObj, setRecordObj] = useState({});
+  const [recordObj, setRecordObj] = useState<any>({});
   const [data, setData] = useState([]);
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
@@ -26,7 +26,7 @@ const UsersTable = () => {
     fetchData();
   }, []);
 
-  const handleSearch = (event) => {
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchedData(event.target.value);
   };
 
@@ -38,7 +38,7 @@ const UsersTable = () => {
       })
     : data;
 
-  const itemRender = (current, type, originalElement) => {
+  const itemRender = (current: any, type: string, originalElement: any) => {
     if (type === 'prev') {
       return <Button type="primary">Попередня</Button>;
     }
@@ -78,7 +78,6 @@ const UsersTable = () => {
               }}
               onChange={(pagination) => {
                 if (pagination) {
-                  // eslint-disable-next-line no-undef
                   window.scrollTo({
                     left: 0,
                     top: 0,

@@ -10,10 +10,15 @@ import classes from './Table.module.css';
 
 const { Content } = Layout;
 
+type Record = {
+  completed: boolean;
+  title: string;
+};
+
 const DecisionTable = () => {
   const [loading, setLoading] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
-  const [recordObj, setRecordObj] = useState({});
+  const [recordObj, setRecordObj] = useState<any>({});
   const [data, setData] = useState([]);
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);

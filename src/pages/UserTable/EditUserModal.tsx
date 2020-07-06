@@ -2,8 +2,12 @@ import React from 'react';
 import { Modal, Button, Checkbox } from 'antd';
 import classes from './Table.module.css';
 
-// eslint-disable-next-line react/prop-types
-const EditUserModal = ({ record, showModal, setShowModal }) => {
+interface Props {
+  record: { email: string };
+  showModal: boolean;
+  setShowModal: (showModal: boolean) => void;
+}
+const EditUserModal = ({ record, showModal, setShowModal }: Props) => {
   const handleOk = () => {};
   const handleCancel = () => setShowModal(false);
 

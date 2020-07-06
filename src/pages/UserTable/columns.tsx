@@ -22,7 +22,7 @@ const columns = [
   {
     title: 'Email',
     dataIndex: 'email',
-    render: (text) => text,
+    render: (text: string) => text,
   },
   {
     title: 'Округи',
