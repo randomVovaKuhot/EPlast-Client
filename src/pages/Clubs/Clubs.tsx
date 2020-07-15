@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useHistory, useRouteMatch} from "react-router-dom";
 import {Card, Layout} from "antd";
 import http from "../../api/api";
-import City from "../../assets/images/city.jpg";
+import City from "../../assets/images/default_city_image.jpg";
 import Add from "../../assets/images/add.png";
 import clubImg from '../../assets/images/clubBuryverkhy.png';
 

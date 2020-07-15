@@ -22,7 +22,7 @@ const PrivateLayout = ({ children }: any) => {
 
   const history = useHistory();
   return (
-    <Layout style={{ minHeight: 'calc(100vh-64px-82px)' }}>
+    <Layout style={{ minHeight: 'calc(100vh-64px-82px)', position: 'relative' }}>
       <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
         <div className={classes.profilePhoto}>
           <Avatar

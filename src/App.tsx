@@ -22,6 +22,10 @@ import CreateCity from "./pages/CreateCity/CreateCity";
 import Clubs from "./pages/Clubs/Clubs";
 import Club from "./pages/Club/Club";
 import CreateClub from "./pages/CreateClub/CreateClub";
+import CityMembers from "./pages/City/CityMembers";
+import CityAdministration from "./pages/City/CityAdministration";
+import CityDocuments from "./pages/City/CityDocuments";
+import CityFollowers from "./pages/City/CityFollowers";
 
 const App: FC = () => (
     <div className="App">
@@ -46,6 +50,11 @@ const App: FC = () => (
             />
             <RouteWithLayout layout={PrivateLayout} exact path="/cities" component={Cities}/>
             <RouteWithLayout layout={PrivateLayout} exact path="/cities/new" component={CreateCity}/>
+            <RouteWithLayout layout={PrivateLayout} exact path="/cities/edit/:id" component={CreateCity}/>
+            <RouteWithLayout layout={PrivateLayout} exact path="/cities/members/:id" component={CityMembers}/>
+            <RouteWithLayout layout={PrivateLayout} exact path="/cities/administration/:id" component={CityAdministration}/>
+            <RouteWithLayout layout={PrivateLayout} exact path="/cities/documents/:id" component={CityDocuments}/>
+            <RouteWithLayout layout={PrivateLayout} exact path="/cities/followers/:id" component={CityFollowers}/>
             <RouteWithLayout layout={PrivateLayout} exact path="/cities/:id" component={City}/>
             <RouteWithLayout layout={PrivateLayout} exact path="/clubs" component={Clubs}/>
             <RouteWithLayout layout={PrivateLayout} exact path="/clubs/new" component={CreateClub}/>

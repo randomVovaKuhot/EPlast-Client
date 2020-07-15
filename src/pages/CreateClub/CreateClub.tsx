@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Form, Input, Layout, Upload, message, Row, Col} from "antd";
 import {LoadingOutlined, PlusOutlined} from "@ant-design/icons/lib";
-import City from '../../assets/images/city.jpg';
+import City from '../../assets/images/default_city_image.jpg';
 
 const classes = require('./CreateClub.module.css');
 
@@ -18,7 +18,6 @@ const getBase64 = (img: any, callback: any) => {
 };
 
 const beforeUpload = (file: any) => {
-  console.log(file.type);
   const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
   if (!isJpgOrPng) {
     message.error('You can only upload JPG/PNG file!');
@@ -35,7 +34,6 @@ const CreateClub = () => {
   const [loading, setLoading] = useState(false);
   const [imgSrc, setImgSrc] = useState();
   const handleChange = (info: any) => {
-    console.log(info.file.status, 'status');
     if (info.file.status === 'uploading') {
       setLoading(true);
       return;

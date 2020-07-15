@@ -1,6 +1,7 @@
 import React from 'react';
-import { Button, Form, Input, Layout, List, Select } from 'antd';
+import { Button, Form, Input, Layout, List } from 'antd';
 import { EnvironmentOutlined, PhoneOutlined, MailOutlined, InfoOutlined } from '@ant-design/icons';
+import ReactInputMask from "react-input-mask";
 import classes from './Contacts.module.css';
 
 const Contacts = () => {
@@ -24,13 +25,7 @@ const Contacts = () => {
       email: 'Невалідний email!',
     },
   };
-  const prefixSelector = (
-    <Form.Item name="prefix" noStyle>
-      <Select style={{ width: 80 }}>
-        <Select.Option value="+380">+380</Select.Option>
-      </Select>
-    </Form.Item>
-  );
+
   return (
     <Layout.Content className={classes.contacts}>
       <section className={classes.contactsList}>
@@ -51,7 +46,6 @@ const Contacts = () => {
       <Form
         className={classes.contactsForm}
         layout="vertical"
-        initialValues={{ prefix: '+380' }}
         validateMessages={validateMessages}
       >
         <Form.Item name={['user', 'name']} label="Вкажіть Ваше ім'я" rules={[{ required: true }]}>
@@ -61,7 +55,9 @@ const Contacts = () => {
           <Input />
         </Form.Item>
         <Form.Item name={['user', 'phone']} label="Вкажіть Ваш номер телефону">
-          <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
+          <ReactInputMask mask="+38(999)-999-99-99">
+            {(inputProps:any) => <Input {...inputProps} type="tel"/>}
+          </ReactInputMask>
         </Form.Item>
         <Form.Item name={['user', 'introduction']} label="Опишіть Ваше звернення" rules={[{ required: true }]}>
           <Input.TextArea />
