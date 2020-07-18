@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import ActionCard from '../ActionCard/ActionCard';
-import http from '../../api/api';
 
 const classes = require('./Actions.module.css');
+
+interface Props {
+    onClick: Function;
+}
 
 const Actions = () => {
 
     const [actions, setActions] = useState([]);
 
     const updateActions = async () => {
-        const actionsArray = await http.get('posts');
-        setActions(actionsArray.data);
+        axios.get(`http://eplastwebapi.azurewebsites.net/api/Events/types`)
+        .then(res => {
+        const arrayActions = res.data;
+        setActions(arrayActions);
+      })
     }
 
     useEffect(() => {
@@ -18,9 +25,8 @@ const Actions = () => {
     }, []);
 
     const renderActions = (arr: any) => {
-        if (arr) {
-            const cutArr = arr.slice(0, 48);
-            return cutArr.map((item: any) => (
+        if (arr) {            
+            return arr.map((item: any) => (
                 <ActionCard item={item} key={item.id} />
             ));
         } return null;
@@ -30,7 +36,6 @@ const Actions = () => {
 
     return (
         <div className={classes.background}>
-            <h1 className={classes.mainTitle}>Акції</h1>
             <div className={classes.actionsWrapper}>{plastActions}</div>
         </div>
     )

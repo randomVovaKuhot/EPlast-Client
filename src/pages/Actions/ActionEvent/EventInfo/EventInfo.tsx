@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Table, Input, Row } from "antd";
+import { useParams } from 'react-router-dom';
 import SortedEventInfo from './SortedEventInfo';
 import rawData from "./data";
 import Gallery from './Gallery';
@@ -26,9 +27,11 @@ const baseColumns = [
 
 
 const EventInfo = () => {
-
+    const { id } = useParams();
+    
     const [filterTable, setFilterTable] = useState([{}]);
     const [baseData,] = useState(rawData);
+
 
     const search = (value: any) => {
         const filteredTable = baseData.filter((item: any) =>
@@ -46,7 +49,8 @@ const EventInfo = () => {
             <div className={classes.wrapper}>
 
                 <div className={classes.actionsWrapper}>
-                    <SortedEventInfo />
+
+                    <SortedEventInfo eventId = {id}/>
                 </div>
                 <Gallery />
                 

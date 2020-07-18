@@ -17,6 +17,6 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'no-nested-ternary': 'off',
     'no-console': 'off',
-    'jsx-a11y/click-events-have-key-events': 'off'
+    'jsx-a11y/click-events-have-key-events': 'off',
   },
 };

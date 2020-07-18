@@ -3,9 +3,14 @@
     width: 242px;
 }
 .titleText{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     font-size: 20px;
     font-weight: 700;
+    white-space: initial;
+    height: 77px;
 }
 .titleText:hover{
     text-decoration: underline;

@@ -7,10 +7,11 @@ const classes = require('./ActionEvent.module.css');
 
 const ActionEvent = () => {
     const { id } = useParams();
+    
     return (
         <div className={classes.background}>
             <div className={classes.actionsWrapper}>
-                <SortedEvents userId={id} />
+                <SortedEvents categoryId={id} />
             </div>
         </div>
     )

@@ -1,37 +1,35 @@
 import React, { useState, useEffect } from 'react';
 
+import axios from 'axios';
 import EventCard from './EventCard/EventCard';
-import http from '../../../api/api';
 
 const classes = require('./ActionEvent.module.css');
 
 interface Props {
-    userId?: string;
+    categoryId?: string;
 }
 
-const SortedEvents = ({ userId = "" }: Props) => {
+const SortedEvents = ({ categoryId = "" }: Props) => {
 
     const [actions, setActions] = useState([]);
-    const [loading, setLoading] = useState<boolean>(true);
 
-
-    const updateActions = async (callback:Function) => {
-        const actionsArray = await http.get('comments');
-        setActions(actionsArray.data);
-        callback(actionsArray);
-        setLoading(false);
+    const updateActions = async () => {
+        axios.get(`https://eplastwebapi.azurewebsites.net/api/types/${categoryId}/categories/${categoryId}/events`)
+        .then(res => {
+        const arrayActions = res.data;
+        setActions(arrayActions);
+    })
     };
     
-    const filterActions = (arr: any) => {
-        if (userId && arr) {
-           setActions(arr.data.filter((item: any) => item.postId === 1));   
-        }
-        setLoading(false);
-    }
+    // const filterActions = (arr: any) => {
+    //     if (categoryId && arr) {
+    //        setActions(arr.data.filter((item: any) => item.postId === categoryId));   
+    //     }
+    // }
 
     useEffect(() => {
-        updateActions(filterActions);
-    }, [userId]);
+        updateActions();
+    }, [categoryId]);
 
     const renderAction = (arr: any) => {
         if (arr) {
@@ -41,10 +39,8 @@ const SortedEvents = ({ userId = "" }: Props) => {
     };
 
     const actionCard = renderAction(actions);
-    if (loading) return <h1 className="loading">Loading...</h1>;
     return (
         <div className={classes.background}>
-            <h1 className={classes.mainTitle}>{userId}</h1>
             <div className={classes.actionsWrapper}>{actionCard}</div>
         </div>
     )

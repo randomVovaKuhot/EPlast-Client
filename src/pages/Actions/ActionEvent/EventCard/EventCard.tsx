@@ -6,11 +6,10 @@ import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/ico
 const classes = require('./EventCard.module.css');
 
 interface CardProps {
-    title: string;
-    name: string;
+    eventName: string;
     imgUrl: string;
     userId: string;
-    id: string;
+    eventId: string;
 }
 
 interface Props {
@@ -18,7 +17,7 @@ interface Props {
 }
 
 const EventCard = ({
-    item: { name, id},
+    item: { eventName, eventId},
 }: Props) => {
     const { Meta } = Card;
     const history = useHistory();
@@ -28,7 +27,7 @@ const EventCard = ({
             <div className={classes.actionsWrapper}>
                 <Card
                 className={classes.cardStyles}
-                onClick={()=> history.push(`/actions/eventinfo/${id}`)}
+                onClick={()=> history.push(`/Events/${eventId}/details`)}
                     cover={
                         <img
                             alt="example"
@@ -42,8 +41,8 @@ const EventCard = ({
                     ]}
                 >
                     <Meta
-                        title={name}
-                        description="This is the description"
+                        title={eventName}
+                        className={classes.titleText}
                     />
                 </Card>
             </div>

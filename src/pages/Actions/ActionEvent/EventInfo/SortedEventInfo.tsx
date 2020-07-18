@@ -1,14 +1,104 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Row, Col, Table, Tooltip } from 'antd';
 import { UserDeleteOutlined, TeamOutlined, UserSwitchOutlined, CameraOutlined, IdcardOutlined } from '@ant-design/icons';
+import axios from 'axios';
 
 const classes = require('./EventInfo.module.css');
 
 interface Props {
-    userId?: string;
+    eventId: string;
 }
 
-const SortedEventInfo = ({ userId = "" }: Props) => {
+const SortedEventInfo = ({ eventId = "" }: Props) => {
+    const [, setEvent] = useState([]);
+
+    const updateEvents = async () => {
+        axios.get(`https://eplastwebapi.azurewebsites.net/api/Events/${eventId}/details`)
+            .then(res => {
+                const arrayEvents = res.data.event;
+                console.log(arrayEvents);
+                setEvent(arrayEvents);
+            })
+    };
+
+    useEffect(() => {
+        updateEvents();
+    }, []);
+
+    // const getTableData = (event: any) => {
+    //     for (const key in event) {
+    //         return (
+    //              event[key]
+                
+    //             // eventId: event[eventId],
+    //             // eventType: event[eventType],
+    //             // eventCategory: event[eventCategory],
+    //             // startDate: event[eventDateStart],
+    //             // endDate: event[eventDateEnd],
+    //             // location: event[eventLocation],
+    //             // forWhom: event[forWhom],
+    //             // formOfHolding: event[formOfHolding],
+    //             // status: event[eventStatus],
+    //             // desc: event[description],
+    //         )
+    //       }
+        
+    // }
+    // getTableData(event)
+    const data = [
+        {
+            key: 'eventType',
+            name: 'Тип:',
+            desc: 'eventType',
+        },
+        {
+            key: 'eventCategory',
+            name: 'Категорія:',
+            desc: 'eventCategory',
+
+        },
+        {
+            key: 'eventDateStart',
+            name: 'Дата початку:',
+            desc: 'eventDateStart',
+
+        },
+        {
+            key: 'eventDateEnd',
+            name: 'Дата завершення:',
+            desc: 'eventDateEnd',
+
+        },
+        {
+            key: 'eventLocation',
+            name: 'Локація:',
+            desc: 'eventLocation',
+
+        },
+        {
+            key: 'forWhom',
+            name: 'Призначений для:',
+            desc: 'forWhom',
+
+        },
+        {
+            key: 'formOfHolding',
+            name: 'Форма проведення:',
+            desc: 'formOfHolding',
+
+        },
+        {
+            key: 'eventStatus',
+            name: 'Статус:',
+            desc: 'eventStatus',
+
+        },
+        {
+            key: 'description',
+            name: 'Опис:',
+            desc: 'description',
+        }
+    ];
     const columns = [
         {
             title: 'Назва',
@@ -16,70 +106,18 @@ const SortedEventInfo = ({ userId = "" }: Props) => {
             key: 'name',
         },
         {
-            title: `Крайовий пластовий з'їзд молоді`,
+            title: `111`,
             dataIndex: 'desc',
             key: 'desc',
         }
     ];
 
-    const data = [
-        {
-            key: '1',
-            name: 'Тип:',
-            desc: 'акція',
-        },
-        {
-            key: '2',
-            name: 'Категорія:',
-            desc: 'КПЗ',
+    
 
-        },
-        {
-            key: '3',
-            name: 'Дата початку:',
-            desc: '15-05-2020',
 
-        },
-        {
-            key: '4',
-            name: 'Дата завершення:',
-            desc: '16-08-2020',
-
-        },
-        {
-            key: '5',
-            name: 'Локація:',
-            desc: 'Одеса',
-
-        },
-        {
-            key: '6',
-            name: 'Призначений для:',
-            desc: 'для молодих та активних людей',
-
-        },
-        {
-            key: '7',
-            name: 'Форма проведення:',
-            desc: 'на вулиці',
-
-        },
-        {
-            key: '8',
-            name: 'Статус:',
-            desc: 'не затверджені',
-
-        },
-        {
-            key: '9',
-            name: 'Опис:',
-            desc: 'дана подія присвячена екологічним проблемам України. Метою даного заходу є пробудити почуття відповідальності у молодого покоління перед природою.',
-        }
-    ];
 
     return (
         <div className={classes.background}>
-            <h1 className={classes.mainTitle}>{userId}</h1>
             <div className={classes.actionsWrapper}>
                 <Row>
                     <Col span={10} push={14}>
@@ -93,21 +131,21 @@ const SortedEventInfo = ({ userId = "" }: Props) => {
                                 <UserSwitchOutlined className={classes.icon} />
                             </Tooltip>
                             <Tooltip placement="bottom" title="Натисніть, щоб відписатись від події">
-                            <UserDeleteOutlined className={classes.icon} />
+                                <UserDeleteOutlined className={classes.icon} />
                             </Tooltip>
                             <Tooltip placement="bottom" title="Учасники">
-                            <TeamOutlined className={classes.icon} />
+                                <TeamOutlined className={classes.icon} />
                             </Tooltip>
                             <Tooltip placement="bottom" title="Галерея">
-                            <CameraOutlined className={classes.icon} />
+                                <CameraOutlined className={classes.icon} />
                             </Tooltip>
                             <Tooltip placement="bottom" title="Адміністратор(-и) події">
-                            <IdcardOutlined className={classes.icon} />
+                                <IdcardOutlined className={classes.icon} />
                             </Tooltip>
                         </div>
                     </Col>
                     <Col span={14} pull={10}>
-                        <Table columns={columns} dataSource={data} pagination={false} />
+                        <Table dataSource = {data} columns={columns}  pagination={false} />
                     </Col>
                 </Row>
             </div>

@@ -22,6 +22,7 @@ import CreateCity from "./pages/CreateCity/CreateCity";
 import Clubs from "./pages/Clubs/Clubs";
 import Club from "./pages/Club/Club";
 import CreateClub from "./pages/CreateClub/CreateClub";
+import ActionsCategories from './pages/Actions/ActionsCategories';
 
 const App: FC = () => (
     <div className="App">
@@ -51,8 +52,9 @@ const App: FC = () => (
             <RouteWithLayout layout={PrivateLayout} exact path="/clubs/new" component={CreateClub}/>
             <RouteWithLayout layout={PrivateLayout} exact path="/clubs/:id" component={Club}/>
             <RouteWithLayout layout={PrivateLayout} exact path="/actions" component={Actions}/>
-            <RouteWithLayout layout={PrivateLayout} exact path="/actions/events/:id" component={ActionEvent} />
-            <RouteWithLayout layout={PrivateLayout} exact path="/actions/eventinfo/:id" component={EventInfo} />
+            <RouteWithLayout layout={PrivateLayout} exact path="/categories/:id" component={ActionsCategories}/>
+            <RouteWithLayout layout={PrivateLayout} exact path="/categories/:id/events/:id" component={ActionEvent} />
+            <RouteWithLayout layout={PrivateLayout} exact path="/Events/:id/details" component={EventInfo} />
             <RouteWithLayout layout={PrivateLayout} exact path="/actions/eventCreate" component={EventCreate} />
           </Switch>
         </div>
