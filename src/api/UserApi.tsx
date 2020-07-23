@@ -10,5 +10,7 @@ import BASE_URL from '../config';
         return response;};
     const put=async(data:any)=>{const response=await axios.put(`${`${BASE_URL  }User/editbase64`}`,data);
         return response;};
+    const getApprovers =  async (userId: string,approverId: string) => {const response = await axios.get(`${`${BASE_URL}User/approvers/${userId}/${approverId}`}`);
+        return  response;};
 
-export default {getById,getImage,edit,put};
+export default {getById,getImage,edit,put,getApprovers};

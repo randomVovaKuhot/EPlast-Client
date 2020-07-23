@@ -59,7 +59,7 @@ export  interface Data {
     user:User;
     userId:string;
     approverId:string
-    approver:Approver[];
+    approver:Approver;
     confirmDate:Date;
     isClubAdmin:boolean;
     isCityAdmin:boolean;
@@ -74,5 +74,5 @@ export  interface Data {
       IsUserPlastun:boolean;
       IsUserHeadOfClub:boolean;
       IsUserHeadOfRegion:boolean;
-      CurrentUserId:boolean;
+      currentUserId:string;
   }
