@@ -12,5 +12,9 @@ import BASE_URL from '../config';
         return response;};
     const getApprovers =  async (userId: string,approverId: string) => {const response = await axios.get(`${`${BASE_URL}User/approvers/${userId}/${approverId}`}`);
         return  response;};
+    const deleteApprove =  async (confirmedId: number) => {const response = await axios.delete(`${`${BASE_URL}User/deleteApprove/${confirmedId}`}`);
+        return  response;};
+    const approveUser =  async (userId: string, isClubAdmin:boolean, isCityAdmin:boolean ) => {const response = await axios.post(`${`${BASE_URL}User/approveUser/${userId}/${isClubAdmin}/${isCityAdmin}`}`);
+        return  response;};
 
-export default {getById,getImage,edit,put,getApprovers};
+export default {getById,getImage,edit,put,getApprovers,deleteApprove,approveUser};

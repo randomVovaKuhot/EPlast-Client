@@ -1,5 +1,5 @@
 import React, { useState, useEffect,useCallback } from 'react';
-import { Card, Space, Spin, Empty } from 'antd';
+import { Card, Space, Spin, Empty, Button } from 'antd';
 import classes from './Approvers.module.css';
 import AvatarAndProgress from '../../../../src/pages/userPage/personalData/AvatarAndProgress';
 //import UserPhoto1 from "../../../../assets/images/avatarUser.jpg"
@@ -26,9 +26,13 @@ const Assignments = () => {
     fetchData();
   }, []);
 
-  const handleClick=(event:any)=>{
-
+  const handleClick=async (event:number)=>{
     console.log(event);
+    await userApi.deleteApprove(event);
+  }
+  const approveClick=async (userId:string, isClubAdmin:boolean=false, isCityAdmin:boolean=false)=>{
+    console.log("userId:"+userId+"/isClubAdmin:"+isClubAdmin+"/isCityAdmin:"+isCityAdmin);
+    await userApi.approveUser(userId,isClubAdmin,isCityAdmin);
   }
 
   const { Meta } = Card;
@@ -51,11 +55,13 @@ const Assignments = () => {
         <h1>Поручення дійсних членів</h1>
         <div className={classes.displayFlex}>
           {console.log(data?.currentUserId)}
+          
           {data?.confirmedUsers.map(p=>
-          {if(p?.approver?.userId==data?.currentUserId){
+          {if(p.approver.userID==data?.currentUserId){
                 return (
 
                       <div key={p.id}>
+                        {console.log(p.approver.userID)}
                         <Card
                           key={p.id}
                           hoverable
@@ -71,13 +77,29 @@ const Assignments = () => {
                       </div>
                       )
                 }
-                return (<div key={p.id}>Голяк, всьо пропало</div>)
+                else{
+                  return (
+
+                    <div key={p.id}>
+                      {console.log(p.approver.userID)}
+                      <Card
+                        key={p.id}
+                        hoverable
+                        className={classes.cardStyles}
+                        cover={<img alt="example"  src={p.approver.user.imagePath} className={classes.avatar}/>}
+                      >
+                        <Meta title={p.approver.user.firstName+" "+p.approver.user.lastName} className={classes.titleText}/>
+                        <Meta title={p.confirmDate} className={classes.titleText}/>
+                      </Card>
+                    </div>
+                    )
+                }
           }
           )}
           <div>
               {data?.canApprove?(
                 <div>
-                  <Link to={'user/approveUser/${p.}'}>
+                  <Link to="#" onClick={()=>approveClick(data?.user.id)}>
                       <Card
                       hoverable
                       className={classes.cardStyles}
@@ -106,9 +128,9 @@ const Assignments = () => {
                 hoverable
                 className={classes.cardStyles}
                 cover={<img alt="example" src={NoAvatar} className={classes.avatar}/>}
-            >
+              >
                 <Meta title='Відсутня' className={classes.titleText}/>
-            </Card>
+        </Card>
             
         </div>
         <h1>Поручення Голови осередку/<br/>Осередкового УСП/УПС</h1>

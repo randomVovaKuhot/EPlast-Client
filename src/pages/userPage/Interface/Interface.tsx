@@ -51,7 +51,7 @@ export  interface Data {
   export interface Approver{
     id:number;
     user:User;
-    userId:string;
+    userID:string;
     confirmedUser:ConfirmedUser;
 }
   export interface ConfirmedUser{
