@@ -5,18 +5,24 @@
 .searchContainer {
   margin-bottom: 12px;
   width: 300px;
-  margin-left: auto; 
+  margin-left: auto;
 }
-.searchContainer>input{
+.searchContainer > input {
   width: 300px;
-  margin-left: auto; 
+  margin-left: auto;
+}
+
+.button {
+  margin-bottom: 12px;
+  width: 100px;
+  margin-right: auto;
 }
 
 @media (max-width: 767px) {
   .table {
     overflow-x: scroll;
   }
-  .searchContainer{
+  .searchContainer {
     width: 100%;
   }
 }

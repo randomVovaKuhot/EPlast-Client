@@ -53,6 +53,7 @@ import StatisticsRegions from "./pages/Statistics/StatisticsRegions";
 import NotAuthorizedPage from "./pages/Error/NotAuthorized";
 import { ClubAnnualReportCreate } from "./pages/AnnualReport/ClubAnnualReportCreate/ClubAnnualReportCreate";
 import ClubAnnualReportEdit from "./pages/AnnualReport/ClubAnnualReportEdit/ClubAnnualReportEdit";
+import UserTableInterested from "./pages/UserTable/UserTableInterested";
 
 const App: FC = () => (
   <div className="App">
@@ -60,7 +61,12 @@ const App: FC = () => (
       <HeaderContainer />
       <div className="mainContent">
         <Switch>
-          <RouteWithLayout exact path="/" component={Home} layout={PrivateLayout} />
+          <RouteWithLayout
+            exact
+            path="/"
+            component={Home}
+            layout={PrivateLayout}
+          />
           <Route path="/contacts" component={Contacts} />
           <Route path="/signin" component={SignIn} />
           <Route path="/signup" component={SignUp} />
@@ -281,6 +287,12 @@ const App: FC = () => (
           <RouteWithLayout
             layout={PrivateLayout}
             exact
+            path="/user/interested"
+            component={UserTableInterested}
+          />
+          <RouteWithLayout
+            layout={PrivateLayout}
+            exact
             path="/user/table"
             component={UsersTable}
           />
@@ -301,7 +313,7 @@ const App: FC = () => (
             exact
             path="/distinctions"
             component={UserDistinctions}
-          />          
+          />
           <RouteWithLayout
             layout={PrivateLayout}
             exact
@@ -325,8 +337,7 @@ const App: FC = () => (
             exact
             path="*"
             component={NotFound}
-          />        
-
+          />
         </Switch>
       </div>
       <FooterContainer />

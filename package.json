@@ -82,11 +82,12 @@
     "@types/yup": "^0.29.3",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "eslint-config-airbnb-typescript": "^7.2.1",
-    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.3.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.6",
-    "prettier": "^2.0.5",
+    "prettier": "^2.2.1",
     "pretty-quick": "^2.0.1"
   }
 }

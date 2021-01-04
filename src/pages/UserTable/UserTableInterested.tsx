@@ -8,7 +8,7 @@ import UserTable from '../../models/UserTable/UserTable';
 import Spinner from '../Spinner/Spinner';
 import ClickAwayListener from 'react-click-away-listener';
 import moment from 'moment';
-import { useHistory } from 'react-router-dom';
+import ColumnsForInterestedUserTable from './ColumnsForInterestedUserTable';
 const classes = require('./UserTable.module.css');
 
 const UsersTable = () => {
@@ -21,14 +21,13 @@ const UsersTable = () => {
   const [users, setUsers] = useState<UserTable[]>([]);
   const [updatedUser, setUpdatedUser] = useState<UserTable[]>([]);
   const [roles, setRoles] = useState<string>();
-  const history = useHistory();
 
   useEffect(() => {
     fetchData();
   }, [updatedUser]);
 
   const fetchData = async () => {
-    await adminApi.getUsersForTable().then((response) => {
+    await adminApi.getInterestedUsersForTable().then((response) => {
       setUsers(response.data);
     });
     setLoading(true);
@@ -50,16 +49,11 @@ const UsersTable = () => {
 
   let filteredData = searchedData
     ? users.filter((item) => {
-        return Object.values([
-          item.regionName,
-          item.cityName,
-          item.clubName,
-          item.userPlastDegreeName,
-          item.userRoles,
-          item.user.userProfileId,
-        ]).find((element) => {
-          return String(element).toLowerCase().includes(searchedData);
-        });
+        return Object.values([item.userRoles, item.user.userProfileId]).find(
+          (element) => {
+            return String(element).toLowerCase().includes(searchedData);
+          },
+        );
       })
     : users;
 
@@ -103,14 +97,7 @@ const UsersTable = () => {
         setShowDropdown(false);
       }}
     >
-      <Title level={2}>Таблиця користувачів</Title>
-      <div className={classes.button}>
-        <Input
-          type="button"
-          value="Зацікавлені"
-          onClick={() => history.push('/user/interested')}
-        />
-      </div>
+      <Title level={2}>Зацікавлені</Title>
       <div className={classes.searchContainer}>
         <Input placeholder="Пошук" onChange={handleSearch} allowClear />
       </div>
@@ -119,7 +106,7 @@ const UsersTable = () => {
         bordered
         rowKey="id"
         scroll={{ x: 1450 }}
-        columns={ColumnsForUserTable}
+        columns={ColumnsForInterestedUserTable}
         dataSource={filteredData}
         onRow={(record) => {
           return {

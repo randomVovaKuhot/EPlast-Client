@@ -1,9 +1,15 @@
-import axios from "axios";
-import Api from "./api";
-import BASE_URL from "../config";
+import axios from 'axios';
+import Api from './api';
+import BASE_URL from '../config';
 
 const getUsersForTable = async () => {
   const response = await Api.get(`Admin/usersTable`);
+
+  return response;
+};
+
+const getInterestedUsersForTable = async () => {
+  const response = await Api.get(`Admin/interestedUsersTable`);
 
   return response;
 };
@@ -46,6 +52,7 @@ const putCurrentRole = async (userId: string, role: string) => {
 export default {
   getCityRegionAdmins,
   getUsersForTable,
+  getInterestedUsersForTable,
   deleteUser,
   getRolesForEdit,
   putEditedRoles,
