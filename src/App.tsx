@@ -338,6 +338,10 @@ const App: FC = () => (
             path="*"
             component={NotFound}
           />
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
         </Switch>
       </div>
       <FooterContainer />
